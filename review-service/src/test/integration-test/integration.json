@@ -1,0 +1,377 @@
+{
+	"info": {
+	  "_postman_id": "2d4c1702-d57f-4b16-8a26-fb406c953ca7",
+	  "name": "ReviewService",
+	  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+	  {
+		"name": "CreateReview",
+		"event": [
+		  {
+			"listen": "test",
+			"script": {
+			  "id": "510c5f55-838b-4f9a-a82f-c500fcacd938",
+			  "exec": [
+				"pm.test(\"Successful Review request\", function () {",
+				"    pm.expect(pm.response.code).to.be.oneOf([201]);",
+				"});",
+				"pm.test(\"Status code name has string\", function () {",
+				"    pm.response.to.have.status(\"Created\");",
+				"});"
+			  ],
+			  "type": "text/javascript"
+			}
+		  }
+		],
+		"request": {
+		  "method": "POST",
+		  "header": [
+			{
+			  "key": "x-application-secret",
+			  "value": "12345",
+			  "type": "text"
+			},
+			{
+			  "key": "Content-Type",
+			  "name": "Content-Type",
+			  "value": "application/json",
+			  "type": "text"
+			}
+		  ],
+		  "body": {
+			"mode": "raw",
+			"raw": "{\"averageReviewScore\":5,\"numberOfReviews\":10,\"productId\":\"yoyo\"}"
+		  },
+		  "url": {
+			"raw": "http://localhost:8085/review",
+			"host": [
+			  "http://localhost:8085"
+			],
+			"path": [
+			  "review"
+			]
+		  }
+		},
+		"response": []
+	  },
+	  {
+		"name": "GetAllReviews",
+		"event": [
+		  {
+			"listen": "test",
+			"script": {
+			  "id": "510c5f55-838b-4f9a-a82f-c500fcacd938",
+			  "exec": [
+				"pm.test(\"Status code is 200\", function () {",
+				"    pm.response.to.have.status(200);",
+				"});",
+				"pm.test(\"Body matches string\", function () {",
+				"    pm.expect(pm.response.text()).to.include(\"yoyo\");",
+				"});",
+				""
+			  ],
+			  "type": "text/javascript"
+			}
+		  }
+		],
+		"request": {
+		  "method": "GET",
+		  "header": [
+			{
+			  "key": "x-application-secret",
+			  "type": "text",
+			  "value": "12345"
+			},
+			{
+			  "key": "Content-Type",
+			  "name": "Content-Type",
+			  "type": "text",
+			  "value": "application/json"
+			}
+		  ],
+		  "url": {
+			"raw": "http://localhost:8085/review",
+			"host": [
+			  "http://localhost:8085"
+			],
+			"path": [
+			  "review"
+			]
+		  }
+		},
+		"response": [
+		  {
+			"name": "GetAllReviews",
+			"originalRequest": {
+			  "method": "GET",
+			  "url": {
+				"raw": "http://localhost:8085/review",
+				"host": [
+				  "http://localhost:8085"
+				],
+				"path": [
+				  "review"
+				]
+			  }
+			},
+			"status": "OK",
+			"code": 200,
+			"_postman_previewlanguage": "json",
+			"header": [
+			  {
+				"key": "X-Content-Type-Options",
+				"value": "nosniff"
+			  },
+			  {
+				"key": "X-XSS-Protection",
+				"value": "1; mode=block"
+			  },
+			  {
+				"key": "Cache-Control",
+				"value": "no-cache, no-store, max-age=0, must-revalidate"
+			  },
+			  {
+				"key": "Pragma",
+				"value": "no-cache"
+			  },
+			  {
+				"key": "Expires",
+				"value": "0"
+			  },
+			  {
+				"key": "X-Frame-Options",
+				"value": "DENY"
+			  },
+			  {
+				"key": "Content-Type",
+				"value": "application/json;charset=UTF-8"
+			  },
+			  {
+				"key": "Transfer-Encoding",
+				"value": "chunked"
+			  },
+			  {
+				"key": "Date",
+				"value": "Sun, 01 Mar 2020 12:39:58 GMT"
+			  }
+			],
+			"cookie": [],
+			"body": "[{\"productId\":\"AB1234\",\"averageReviewScore\":4.3,\"numberOfReviews\":20},{\"productId\":\"M20324\",\"averageReviewScore\":5.2,\"numberOfReviews\":50},{\"productId\":\"BB5476\",\"averageReviewScore\":6.7,\"numberOfReviews\":100},{\"productId\":\"CC2345\",\"averageReviewScore\":7.8,\"numberOfReviews\":25},{\"productId\":\"JJ0098\",\"averageReviewScore\":7.8,\"numberOfReviews\":55},{\"productId\":\"yoyo\",\"averageReviewScore\":5,\"numberOfReviews\":10}]"
+		  }
+		]
+	  },
+	  {
+		"name": "GetReviewsByProductId",
+		"event": [
+		  {
+			"listen": "test",
+			"script": {
+			  "id": "510c5f55-838b-4f9a-a82f-c500fcacd938",
+			  "exec": [
+				"pm.test(\"Status code is 200\", function () {",
+				"    pm.response.to.have.status(200);",
+				"});",
+				"pm.test(\"Body matches string\", function () {",
+				"    pm.expect(pm.response.text()).to.include(\"AB1234\");",
+				"});",
+				""
+			  ],
+			  "type": "text/javascript"
+			}
+		  }
+		],
+		"request": {
+		  "method": "GET",
+		  "header": [
+			{
+			  "key": "x-application-secret",
+			  "type": "text",
+			  "value": "12345"
+			},
+			{
+			  "key": "Content-Type",
+			  "name": "Content-Type",
+			  "type": "text",
+			  "value": "application/json"
+			}
+		  ],
+		  "url": {
+			"raw": "http://localhost:8085/review/AB1234",
+			"host": [
+			  "http://localhost:8085"
+			],
+			"path": [
+			  "review",
+			  "AB1234"
+			]
+		  }
+		},
+		"response": [
+		  {
+			"name": "GetReviewsByProductId",
+			"originalRequest": {
+			  "method": "GET",
+			  "url": {
+				"raw": "http://localhost:8085/review/AB1234",
+				"host": [
+				  "http://localhost:8085"
+				],
+				"path": [
+				  "review",
+				  "AB1234"
+				]
+			  }
+			},
+			"status": "OK",
+			"code": 200,
+			"_postman_previewlanguage": "json",
+			"header": [
+			  {
+				"key": "X-Content-Type-Options",
+				"value": "nosniff"
+			  },
+			  {
+				"key": "X-XSS-Protection",
+				"value": "1; mode=block"
+			  },
+			  {
+				"key": "Cache-Control",
+				"value": "no-cache, no-store, max-age=0, must-revalidate"
+			  },
+			  {
+				"key": "Pragma",
+				"value": "no-cache"
+			  },
+			  {
+				"key": "Expires",
+				"value": "0"
+			  },
+			  {
+				"key": "X-Frame-Options",
+				"value": "DENY"
+			  },
+			  {
+				"key": "Content-Type",
+				"value": "application/json;charset=UTF-8"
+			  },
+			  {
+				"key": "Transfer-Encoding",
+				"value": "chunked"
+			  },
+			  {
+				"key": "Date",
+				"value": "Sun, 01 Mar 2020 12:39:58 GMT"
+			  }
+			],
+			"cookie": [],
+			"body": "{\"productId\":\"AB1234\",\"averageReviewScore\":4.3,\"numberOfReviews\":20}"
+		  }
+		]
+	  },
+	  {
+		"name": "UpdateReview",
+		"event": [
+		  {
+			"listen": "test",
+			"script": {
+			  "id": "510c5f55-838b-4f9a-a82f-c500fcacd938",
+			  "exec": [
+				"pm.test(\"Successful Review request\", function () {",
+				"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+				"});",
+				"pm.test(\"Status code name has string\", function () {",
+				"    pm.response.to.have.status(\"OK\");",
+				"});"
+			  ],
+			  "type": "text/javascript"
+			}
+		  }
+		],
+		"request": {
+		  "method": "PUT",
+		  "header": [
+			{
+			  "key": "x-application-secret",
+			  "value": "12345",
+			  "type": "text"
+			},
+			{
+			  "key": "Content-Type",
+			  "name": "Content-Type",
+			  "value": "application/json",
+			  "type": "text"
+			}
+		  ],
+		  "body": {
+			"mode": "raw",
+			"raw": "{\"averageReviewScore\":15,\"numberOfReviews\":20}"
+		  },
+		  "url": {
+			"raw": "http://localhost:8085/review/AB1234",
+			"host": [
+			  "http://localhost:8085"
+			],
+			"path": [
+			  "review",
+			  "AB1234"
+			]
+		  }
+		},
+		"response": []
+	  },
+		  {
+		"name": "DeleteReview",
+		"event": [
+		  {
+			"listen": "test",
+			"script": {
+			  "id": "510c5f55-838b-4f9a-a82f-c500fcacd938",
+			  "exec": [
+				"pm.test(\"Successful Review request\", function () {",
+				"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+				"});",
+				"pm.test(\"Status code name has string\", function () {",
+				"    pm.response.to.have.status(\"No Content\");",
+				"});"
+			  ],
+			  "type": "text/javascript"
+			}
+		  }
+		],
+		"request": {
+		  "method": "DELETE",
+		  "header": [
+			{
+			  "key": "x-application-secret",
+			  "value": "12345",
+			  "type": "text"
+			},
+			{
+			  "key": "Content-Type",
+			  "name": "Content-Type",
+			  "value": "application/json",
+			  "type": "text"
+			}
+		  ],
+		  "body": {
+			"mode": "raw",
+			"raw": "{\"averageReviewScore\":15,\"numberOfReviews\":20}"
+		  },
+		  "url": {
+			"raw": "http://localhost:8085/review/yoyo",
+			"host": [
+			  "http://localhost:8085"
+			],
+			"path": [
+			  "review",
+			  "yoyo"
+			]
+		  }
+		},
+		"response": []
+	  }
+  
+	],
+	"protocolProfileBehavior": {}
+  }

@@ -1,0 +1,46 @@
+# Swagger toggle configuration
+swagger:
+  enable: true
+
+# Log Configuration
+logging:
+  pretty-print: true
+  level:
+    com: INFO
+    com.service: TRACE
+    org.springframework: INFO
+
+# General configuration
+spring:
+  application:
+    name: review-Service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+  jpa:
+    generate-ddl: true
+    open-in-view: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+      hibernate.show_sql: true
+    hibernate.ddl-auto: none
+  jackson.default-property-inclusion: NON_NULL
+  h2:
+    console:
+      enabled: true
+
+# Server Configuration
+server:
+  port: 8085
+
+info:
+  app:
+    name: ^project.name^
+    version: ^project.version^
+    description: ^project.description^
+
+security:
+  # your-service-secret
+  app-secret: 82d4f86f-8768-4b79-8a7e-c97d33725684
