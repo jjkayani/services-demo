@@ -6,6 +6,9 @@ will be populated on the application startup. Please check src/main/resources/da
 This service is running on port 8085, you can access the below URL to access swagger and call the api:
 * http://localhost:8085/swagger-ui/index.html#/
 
+<img width="1473" alt="Screen Shot 2021-09-12 at 5 32 22 PM" src="https://user-images.githubusercontent.com/25216840/132989614-912edb69-c014-4302-83ee-6977da6fda66.png">
+
+
 # Security
 
 The api is protected by spring-security and needs an additional header which requires the secret key to access the apis.
