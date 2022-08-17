@@ -1,0 +1,11 @@
+spring:
+  application.name: review-service
+  cloud:
+    config:
+      server:
+        # This flag indicates that the server should configure itself from its own remote repository
+        bootstrap: true
+        git:
+          uri: https://github.com/jjkayani/services-demo/tree/main/review-service
+        # prefix string to avoid conflicting with context/server path of application
+        prefix: config
